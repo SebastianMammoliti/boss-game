@@ -10,6 +10,7 @@ require 'abilities/Shockwave'
 -- Require Classes
 require 'Player'
 require 'Creature'
+require 'Camera'
 
 -- Constant Variables
 WINDOW_WIDTH = 1280
@@ -37,8 +38,8 @@ function love.draw()
 
     -- Set color to white
     love.graphics.setColor(255,255,255,1)
-    love.graphics.printf('Mouse X = ' .. love.mouse.getX(), 0,0, 200, "left" )
-    love.graphics.printf('Mouse Y = ' .. love.mouse.getY(), 0,20, 200, "left" )
+    love.graphics.printf('Mouse X = ' .. love.mouse.getCameraX(), 0,0, 200, "left" )
+    love.graphics.printf('Mouse Y = ' .. love.mouse.getCameraY(), 0,20, 200, "left" )
 
     -- Render state machine
     gStateMachine:render()
@@ -64,4 +65,12 @@ function love.keyboard.wasPressed(key)
     else
         return false
     end
+end
+
+function love.mouse.getCameraX()
+    return love.mouse.getX() * camera.scaleX + camera.x
+end
+
+function love.mouse.getCameraY()
+    return love.mouse.getY() * camera.scaleY + camera.y
 end

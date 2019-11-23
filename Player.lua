@@ -38,8 +38,8 @@ function Player:update(dt)
     -- Movement
     if love.mouse.isDown(1) or love.mouse.isDown(2) then
        
-        self.dx = self.x - love.mouse.getX()
-        self.dy = self.y - love.mouse.getY()
+        self.dx = self.x - love.mouse.getCameraX()
+        self.dy = self.y - love.mouse.getCameraY()
 
         self.distance = math.abs((self.dx^2 + self.dy^2)^(1/2))
 
