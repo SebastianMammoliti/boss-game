@@ -49,8 +49,7 @@ end
 
 function Camera:update(player1)
      -- Movement
-     if love.mouse.isDown(1) or love.mouse.isDown(2) then
-
+     if player1.moving then
         self.x = player1.x - WINDOW_WIDTH/2 
         self.y = player1.y - WINDOW_HEIGHT/2
     end  
