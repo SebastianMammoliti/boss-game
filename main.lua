@@ -7,6 +7,8 @@ require 'StateMachine'
 require 'states/BaseState'
 require 'states/BattleState'
 require 'abilities/Shockwave'
+require 'abilities/TornadoShot'
+require 'abilities/TornadoShotSecondary'
 -- Require Classes
 require 'Player'
 require 'Creature'

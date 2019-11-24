@@ -9,12 +9,20 @@ function Shockwave:init(maxRadius, speed, time, x, y)
     self.y = y
     self.radius = 0
     self.hit = false
+
+    self.done = false
     print("Shockwave Created init() " .. maxRadius .. " " .. speed .. " " .. time .. " " .. x .. " " .. y)
 end
 
 function Shockwave:update(dt)
     self.time = self.time + 1
     self.radius = self.radius + self.speed * dt
+
+    
+    if self.time == self.maxTime then
+       self.done = true
+        print("remove shockwave")
+    end
 end
 
 function Shockwave:render()
