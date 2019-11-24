@@ -5,12 +5,13 @@ function BattleState:init()
     self.creatures = {}
     player1 = Player(WINDOW_WIDTH/2,  WINDOW_HEIGHT/2, 5)
     boss = Creature(WINDOW_WIDTH/2,  WINDOW_HEIGHT/2, 20)
-
+    camera = Camera()
     table.insert(self.creatures, boss)
 end
 
 function BattleState:update(dt)
-    player1:update()
+    player1:update(dt)
+    camera:update(player1)
 
     if love.keyboard.wasPressed('space') then
         -- If Space is Pressed
@@ -54,11 +55,13 @@ end
 
 function BattleState:render()
     -- Draw player
+    camera:set()
     player1:render()
     boss:render()
     for key, ability in pairs(self.playerAbilities) do
         ability:render()
     end
+    camera:unset()
 end
 
 function BattleState:enter()
