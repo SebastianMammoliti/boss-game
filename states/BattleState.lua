@@ -15,11 +15,16 @@ function BattleState:update(dt)
 
     if love.keyboard.wasPressed('space') then
         -- If Space is Pressed
-
         -- Add a shockwave to the ability table
         table.insert(self.playerAbilities, Shockwave(400, 400, 40, player1.x, player1.y))
+        player1.moving = false
+    end
 
-        print(table.getn(self.playerAbilities))
+    if love.keyboard.wasPressed('q') then
+        -- If q is Pressed
+        -- Add a Tornado Shot to the ability table
+        table.insert(self.playerAbilities, TornadoShot(10, player1.x, player1.y, love.mouse.getCameraX(), love.mouse.getCameraY()))
+        player1.moving = false
     end
 
     -- Update all player abilities and check for collisions with enemies
@@ -27,7 +32,7 @@ function BattleState:update(dt)
         for k, ability in pairs(self.playerAbilities) do
 
             -- Increase ability time.
-            ability:update(dt)
+            ability:update(dt, self.playerAbilities)
             if (ability.hit ~= true) then
                 for l, creature in pairs(self.creatures) do
                     
@@ -43,9 +48,9 @@ function BattleState:update(dt)
                 end
             end
 
-            if ability.time == ability.maxTime then
+            if ability.done then
                 table.remove(self.playerAbilities, k)
-                print("removed shockwave")
+                print("removed ability")
             end
         end
     end
