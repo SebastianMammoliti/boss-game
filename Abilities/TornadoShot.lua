@@ -1,7 +1,6 @@
 TornadoShot = Class{}
 
-function TornadoShot:init(speed, x, y, targetX, targetY)
-    
+function TornadoShot:init(speed, x, y, targetX, targetY) 
     self.speed = speed
 
     self.x = x

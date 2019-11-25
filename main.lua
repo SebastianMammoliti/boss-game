@@ -9,6 +9,8 @@ require 'states/BattleState'
 require 'abilities/Shockwave'
 require 'abilities/TornadoShot'
 require 'abilities/TornadoShotSecondary'
+require 'abilities/BladeVortex'
+
 -- Require Classes
 require 'Player'
 require 'Creature'

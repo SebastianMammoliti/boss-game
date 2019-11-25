@@ -17,13 +17,14 @@ function BattleState:update(dt)
         -- If Space is Pressed
         -- Add a shockwave to the ability table
         table.insert(self.playerAbilities, Shockwave(400, 400, 40, player1.x, player1.y))
+        player1.moving = false
     end
 
     if love.keyboard.wasPressed('q') then
         -- If q is Pressed
         -- Add a Tornado Shot to the ability table
         table.insert(self.playerAbilities, TornadoShot(10, player1.x, player1.y, love.mouse.getCameraX(), love.mouse.getCameraY()))
-        
+        player1.moving = false
     end
 
     -- Update all player abilities and check for collisions with enemies
