@@ -17,22 +17,21 @@ function BuilderState:update(dt)
         gStateMachine:change('battle') 
     end
     
+    -- Update all elements in gui
     for key, element in pairs(self.gui) do
         element:update()
-
-        if (love.mouse.getCameraX() > element.x) and (love.mouse.getCameraX() < element.x + element.w) and (love.mouse.getCameraY() > element.y) and (love.mouse.getCameraY() < element.y + element.h) then
-            element.originalText= "asdasdasd"
-        end 
-
     end    
 
 end
 
 function BuilderState:render()
     camera:set()
+
+    -- Render all elements in gui
     for key, element in pairs(self.gui) do
         element:render()
     end
+    
     camera:unset()
 end
 
