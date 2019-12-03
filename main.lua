@@ -6,6 +6,7 @@ Class = require 'class'
 require 'StateMachine'
 require 'states/BaseState'
 require 'states/BattleState'
+require 'states/BuilderState'
 require 'abilities/Shockwave'
 require 'abilities/TornadoShot'
 require 'abilities/TornadoShotSecondary'
@@ -14,6 +15,7 @@ require 'abilities/TornadoShotSecondary'
 require 'Player'
 require 'Creature'
 require 'Camera'
+require 'GUI/Button'
 
 -- Constant Variables
 WINDOW_WIDTH = 1280
@@ -30,6 +32,7 @@ function love.load()
     -- Initialise State Machine
     gStateMachine = StateMachine {
         ['battle'] = function() return BattleState() end,
+        ['builder'] = function() return BuilderState() end,
     }
     gStateMachine:change('battle') 
     
@@ -38,7 +41,6 @@ function love.load()
 end
 
 function love.draw()
-
     -- Set color to white
     love.graphics.setColor(255,255,255,1)
     love.graphics.printf('Mouse X = ' .. love.mouse.getCameraX(), 0,0, 200, "left" )
@@ -51,6 +53,7 @@ end
 function love.update(dt)
     gStateMachine:update(dt)
     love.keyboard.keysPressed = {}
+    love.mouse.buttonsReleased = {}
 end
 
 function love.keypressed(key)
@@ -62,8 +65,21 @@ function love.keypressed(key)
     end
 end
 
+function love.mousereleased(x,y,button)
+    -- add to our table of mouse buttons released this frame
+    love.mouse.buttonsReleased[button] = true
+end
+
 function love.keyboard.wasPressed(key)
     if love.keyboard.keysPressed[key] then
+        return true
+    else
+        return false
+    end
+end
+
+function love.mouse.wasClicked(button)
+    if love.mouse.buttonsReleased[button] then
         return true
     else
         return false
@@ -74,6 +90,14 @@ function love.mouse.getCameraX()
     return love.mouse.getX() * camera.scaleX + camera.x
 end
 
+function love.mouse.convertCameraX(x)
+    return x * camera.scaleX + camera.x
+end
+
 function love.mouse.getCameraY()
     return love.mouse.getY() * camera.scaleY + camera.y
+end
+
+function love.mouse.convertCameraY(y)
+    return y * camera.scaleY + camera.y
 end
