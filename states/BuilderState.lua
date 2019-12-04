@@ -36,7 +36,7 @@ function BuilderState:init()
 
     myFuncs['shockwave'] = function() 
         self.abilities = {}
-        Shockwave(400, 400, 40, player1.x, player1.y)
+        Shockwave(400, 400, 40, boss.x, boss.y)
         table.insert(self.abilities, Shockwave(400, 400, 40, boss.x, boss.y))
         print('Pressed the Shockwave Button')
     end
