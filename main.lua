@@ -34,7 +34,7 @@ function love.load()
         ['battle'] = function() return BattleState() end,
         ['builder'] = function() return BuilderState() end,
     }
-    gStateMachine:change('battle') 
+    gStateMachine:change('builder') 
     
     -- initialize input table
     love.keyboard.keysPressed = {}
@@ -45,6 +45,8 @@ function love.draw()
     love.graphics.setColor(255,255,255,1)
     love.graphics.printf('Mouse X = ' .. love.mouse.getCameraX(), 0,0, 200, "left" )
     love.graphics.printf('Mouse Y = ' .. love.mouse.getCameraY(), 0,20, 200, "left" )
+    love.graphics.setColor(0,1,1,1)
+    love.graphics.printf('Press F1 to toggle builder/battle state', 0,40, 600, "left" )
 
     -- Render state machine
     gStateMachine:render()

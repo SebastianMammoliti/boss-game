@@ -32,8 +32,6 @@ function BattleState:update(dt)
         gStateMachine:change('builder') 
     end
 
-
-
     -- Update all player abilities and check for collisions with enemies
     if table.getn(self.playerAbilities) ~= 0 then
         for k, ability in pairs(self.playerAbilities) do
