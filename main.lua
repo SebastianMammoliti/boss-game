@@ -38,6 +38,7 @@ function love.load()
     
     -- initialize input table
     love.keyboard.keysPressed = {}
+    love.mouse.buttonsReleased = {}
 end
 
 function love.draw()
@@ -68,6 +69,7 @@ function love.keypressed(key)
 end
 
 function love.mousereleased(x,y,button)
+    print('mousereleased ' .. button)
     -- add to our table of mouse buttons released this frame
     love.mouse.buttonsReleased[button] = true
 end

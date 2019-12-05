@@ -36,7 +36,6 @@ function BuilderState:init()
 
     myFuncs['shockwave'] = function() 
         self.abilities = {}
-        Shockwave(400, 400, 40, boss.x, boss.y)
         table.insert(self.abilities, Shockwave(400, 400, 40, boss.x, boss.y))
         print('Pressed the Shockwave Button')
     end
@@ -57,8 +56,8 @@ function BuilderState:update(dt)
     -- Update all elements in gui
     for key, element in pairs(self.gui) do
         element:update()
-    end    
-
+    end   
+    
     if table.getn(self.abilities) ~= 0 then
         for k, ability in pairs(self.abilities) do
 
