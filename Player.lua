@@ -18,10 +18,8 @@ end
 function Player:render()
     love.graphics.setColor(1,1,1)
     love.graphics.circle('fill', self.x, self.y, self.radius)
-
     -- Print debugging
     love.graphics.printf('## Player 1 ##', 0,60, 200, "left" )
-    
     love.graphics.printf('Movement Speed = ' .. self.movementSpeed, 0,80, 400, "left" )
     love.graphics.printf(' x = ' .. self.x, 0,100, 400, "left" )
     love.graphics.printf(' y = ' .. self.y, 0,120, 400, "left" )
@@ -30,8 +28,6 @@ function Player:render()
     love.graphics.printf('dx = ' .. self.dx, 0,180, 400, "left" )
     love.graphics.printf('dy = ' .. self.dy, 0,200, 400, "left" )
     love.graphics.printf('moving = ' .. tostring(self.moving), 0,220, 400, "left" )
-
-
 end
 
 function Player:update(dt)
@@ -49,8 +45,7 @@ function Player:update(dt)
         self.moving = true
 
         self.moveTargetX = love.mouse.getCameraX()
-        self.moveTargetY = love.mouse.getCameraY()
-      
+        self.moveTargetY = love.mouse.getCameraY()  
     end  
 
     if self.moving then

@@ -18,7 +18,6 @@ Button = Class{}
 -- Init Button Class with text, x, y, width, height, callback function for use with onClick
 function Button:init(text, x, y, w, h, func) 
     self.text = text
-    self.originalText = text
     self.x = x
     self.y = y
     self.w = w
@@ -28,15 +27,12 @@ end
 
 -- Update Button Class. This is where it checks for hover and clicking. Calls self.func on click.
 function Button:update(dt)
-    -- Check if the mouse is on the button.
-    if (love.mouse.getCameraX() > self.x) and (love.mouse.getCameraX() < self.x + self.w) and (love.mouse.getCameraY() > self.y) and (love.mouse.getCameraY() < self.y + self.h) then
-        -- Check if it was clicked last frame and run the function
-        if love.mouse.buttonsReleased[1] then
-            self.text = "CLICKED"
-            self.func()
-        end
-    else
-        self.text = self.originalText
+    if love.mouse.wasClicked(1) then
+        -- Check if the mouse is on the button.
+        if (love.mouse.getCameraX() > self.x) and (love.mouse.getCameraX() < self.x + self.w) and (love.mouse.getCameraY() > self.y) and (love.mouse.getCameraY() < self.y + self.h) then
+            -- Check if it was clicked last frame and run the function
+            self.func()         
+        end    
     end
 end
 

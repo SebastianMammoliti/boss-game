@@ -29,5 +29,4 @@ function Shockwave:render()
     love.graphics.setColor(0,1,0)
     love.graphics.printf('## SHOCKWAVE ##', 0, 200, 200, "left" )
     love.graphics.circle("line", self.x, self.y, self.radius, 100)
-    print("Draw Shockwave")
 end
